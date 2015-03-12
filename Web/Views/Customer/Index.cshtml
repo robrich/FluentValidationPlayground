@@ -1,0 +1,31 @@
+﻿@model List<Customer>
+
+@{
+	ViewBag.Title = "Customers";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.ActionLink("Add", "Edit", new {id = 0})<br />
+@if (Model == null || Model.Count == 0) {
+	<p>No customers in the database</p>
+} else {
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Surname</th>
+				<th>Forename</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (Customer c in Model) {
+				<tr>
+					<td>@Html.ActionLink(c.CustomerId.ToString(), "Edit", new {id = c.CustomerId})</td>
+					<td>@c.Surname</td>
+					<td>@c.Forename</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}

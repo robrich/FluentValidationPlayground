@@ -1,0 +1,44 @@
+﻿@model Customer
+
+@{
+	ViewBag.Title = "Edit / Add";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm()) {
+	<div>
+		@Html.LabelFor(m => m.Surname)<span class="required">*</span><br />
+		@Html.EditorFor(m => m.Surname)
+		@Html.ValidationMessageFor(m => m.Surname)
+	</div>
+	<div>
+		@Html.LabelFor(m => m.Forename)<span class="required">*</span><br />
+		@Html.EditorFor(m => m.Forename)
+		@Html.ValidationMessageFor(m => m.Forename)
+	</div>
+	<div>
+		@Html.LabelFor(m => m.HasDiscount)<br />
+		<input type="checkbox" id="HasDiscount" name="HasDiscount" value="true" checked="@Model.HasDiscount" />
+		@Html.LabelFor(m => m.HasDiscount)
+		@Html.ValidationMessageFor(m => m.HasDiscount)
+	</div>
+	<div>
+		@Html.LabelFor(m => m.Discount)<br />
+		@Html.EditorFor(m => m.Discount)
+		@Html.ValidationMessageFor(m => m.Discount)
+	</div>
+	<div>
+		@Html.LabelFor(m => m.Address)<br />
+		@Html.EditorFor(m => m.Address)
+		@Html.ValidationMessageFor(m => m.Address)
+	</div>
+	<div>
+		@Html.LabelFor(m => m.Postcode)<span class="required">*</span><br />
+		@Html.EditorFor(m => m.Postcode)
+		@Html.ValidationMessageFor(m => m.Postcode)
+	</div>
+
+	<input type="submit" value="Save" />
+	@Html.ValidationSummary() <br />
+}

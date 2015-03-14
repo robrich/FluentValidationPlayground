@@ -1,7 +1,6 @@
 ﻿namespace FluentValidationPlayground.Rest {
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Security.Cryptography;
 
 	public interface ICustomerRepository {
 		List<Customer> GetAll();

@@ -1,4 +1,5 @@
 ﻿namespace FluentValidationPlayground.Web.Controllers {
+	using System;
 	using System.Collections.Generic;
 	using System.Web.Mvc;
 	using FluentValidation.Results;
@@ -7,8 +8,11 @@
 	public class CustomerController : Controller {
 		private readonly ICustomerRepository customerRepository;
 
-		public CustomerController() {
-			this.customerRepository = new CustomerRepository(); // This sample isn't about DI, it's about FluentValidation
+		public CustomerController(ICustomerRepository CustomerRepository) {
+			if (CustomerRepository == null) {
+				throw new ArgumentNullException("CustomerRepository");
+			}
+			this.customerRepository = CustomerRepository;
 		}
 
 		public ActionResult Index() {
@@ -32,6 +36,7 @@
 				return this.View(Customer); // fix your errors
 			}
 
+			/*
 			CustomerValidator validator = new CustomerValidator();
 			ValidationResult results = validator.Validate(Customer);
 
@@ -44,6 +49,7 @@
 				}
 				return this.View(Customer); // fix your errors
 			}
+			*/
 
 			this.customerRepository.Save(Customer);
 
